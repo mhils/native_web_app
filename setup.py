@@ -34,5 +34,5 @@ setup(
     author_email="pypi@maximilianhils.com",
     license="MIT",
     py_modules=["native_web_app"],
-    python_requires='>=3.7',
+    python_requires=">=3.7",
 )
