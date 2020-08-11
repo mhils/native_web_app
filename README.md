@@ -75,15 +75,15 @@ This makes it unsuitable for inclusion in native_web_app.
 
 This project follows semantic versioning.
 
-#### native_web_app 1.0.0 (2020-08-11)
-
- - Initial Release
-
 #### native_web_app 1.0.1 (2020-08-12)
 
  - Enforce browsers to start in background. This fixes
    compatibility with Microsoft Edge on Windows 10.
  - Extend documentation on compatibility.
+
+#### native_web_app 1.0.0 (2020-08-11)
+
+ - Initial Release
 
 ## FAQ
 
