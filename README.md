@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="600" height="215" src="https://uploads.hi.ls/2020-08/example-app.png">
+    <img alt="demo app screenshot" width="600" height="215" src="https://uploads.hi.ls/2020-08/example-app.png">
 </p>
 
 # native-web-app
@@ -33,7 +33,7 @@ This module exposes a single `open` function:
 ```python
 def open(url: str, try_app_mode: bool = True) -> None:
     """
-    Open a URL in a modern webbrowser.
+    Open a URL in a modern browser.
     In contrast to webbrowser.open, this method gracefully degrades
     to a no-op on headless servers, where webbrowser.open would otherwise open lynx.
 
@@ -53,16 +53,43 @@ def open(url: str, try_app_mode: bool = True) -> None:
     """
 ```
 
+## Compatibility
+
+OS | Browser | Status (✅ app mode, ☑️ regular browser)
+--- | --- | ---
+Windows 10 (2004) | Google Chrome 84 | ✅
+Windows 10 (2004) | Microsoft Edge 84 | ✅
+Windows 10 (2004) | Windows Subsystem for Linux | ☑️
+Windows 10 (2004) | Default Browser | ☑️
+Ubuntu 20.04 | Google Chrome 84 | ✅
+Ubuntu 20.04 | Default Browser | ☑️
+macOS Catalina | Google Chrome 84 | ✅
+macOS Catalina | Default Browser | ☑️
+
+Firefox implemented app mode ("site-specific browser functionality") in 2020,
+but enabled it only for `https://` URLs. This means it [does not work with `http://localhost:1234`
+or `file://` URLs](https://bugzilla.mozilla.org/show_bug.cgi?id=1631271).
+This makes it unsuitable for inclusion in native_web_app.
+
 ## Changelog
+
+This project follows semantic versioning.
 
 #### native_web_app 1.0.0 (2020-08-11)
 
  - Initial Release
 
+#### native_web_app 1.0.1 (2020-08-12)
+
+ - Enforce browsers to start in background. This fixes
+   compatibility with Microsoft Edge on Windows 10.
+ - Extend documentation on compatibility.
+
 ## FAQ
 
 #### How do I detect when the browser window is closed?
 
+Monitoring the spawned browser process does not work reliably across platforms.
 We recommend you use JavaScript to notify your backend:
 
 ```javascript
@@ -70,10 +97,3 @@ window.addEventListener('unload', function() {
     navigator.sendBeacon("/shutdown");
 }, false);
 ```
-
-#### What about Firefox?
-
-Firefox implemented what they call "site-specific browser functionality" in 2020, 
-but it currently only supports HTTPS, i.e. it does not work with `http://127.0.0.1:1234` 
-or `file://` URLs (<https://bugzilla.mozilla.org/show_bug.cgi?id=1631271>).
-This makes it unsuitable for this project.
