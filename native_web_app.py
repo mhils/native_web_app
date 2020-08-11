@@ -88,13 +88,13 @@ def open(url: str, try_app_mode: bool = True) -> None:
             exe = get_executable(browser)
             if exe:
                 try:
-                    subprocess.run(
-                        [exe, f"--app={url}"],
-                        check=True,
-                        capture_output=True,
-                        timeout=2,
+                    p = subprocess.Popen(
+                        [exe, f"--app={url}"], close_fds=True, start_new_session=True
                     )
-                except subprocess.CalledProcessError:
+                    ret = p.poll()
+                    if ret:
+                        raise OSError(f"Early return: {ret}")
+                except OSError as e:
                     pass
                 else:
                     return
