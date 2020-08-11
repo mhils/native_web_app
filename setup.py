@@ -23,6 +23,8 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Operating System :: OS Independent",
         "Topic :: Internet :: WWW/HTTP :: Browsers",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -34,5 +36,5 @@ setup(
     author_email="pypi@maximilianhils.com",
     license="MIT",
     py_modules=["native_web_app"],
-    python_requires=">=3.7",
+    python_requires=">=3.5",
 )

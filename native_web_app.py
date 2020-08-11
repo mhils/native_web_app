@@ -113,4 +113,4 @@ def open(url: str, try_app_mode: bool = True) -> None:
 
 
 __all__ = ["open"]
-__version__ = "1.0.1"
+__version__ = "1.0.2"

@@ -75,6 +75,10 @@ This makes it unsuitable for inclusion in native_web_app.
 
 This project follows semantic versioning.
 
+#### native_web_app 1.0.2 (2020-08-12)
+
+ - Add support for Python 3.5 and 3.6.
+
 #### native_web_app 1.0.1 (2020-08-12)
 
  - Enforce browsers to start in background. This fixes
