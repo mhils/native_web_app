@@ -87,8 +87,17 @@ def open(url: str, try_app_mode: bool = True) -> None:
         for browser in APP_BROWSERS:
             exe = get_executable(browser)
             if exe:
-                subprocess.run([exe, f"--app={url}"])
-                return
+                try:
+                    subprocess.run(
+                        [exe, f"--app={url}"],
+                        check=True,
+                        capture_output=True,
+                        timeout=2,
+                    )
+                except subprocess.CalledProcessError:
+                    pass
+                else:
+                    return
 
     # Fallback: We did not find an app-mode browser browser that offers an app mode, so
     for browser in FALLBACK_BROWSERS:
